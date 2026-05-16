@@ -1,0 +1,74 @@
+--=========================================================================
+-- FV Jan 2022: Practical Exercise 1
+--=========================================================================
+-- Student UUN:810103098
+
+--=========================================================================
+-- PROPERTIES OF FIFO
+--=========================================================================
+-- This file is not a standalone NuSMV file: it is to be included in
+-- fifo.smv or fifo-fixed.smv.
+
+-- The CTL and LTL properties in this file are numbered.  To have
+-- NuSMV check just the property numbered <p>, run it with the added
+-- option -n <p>.
+
+-- NuSMV always numbers CTL properties first, so the numbers for the
+-- LTL properties do not start from 0.
+
+
+---------------------------------------------------------------------------
+-- Section 3.2, Q1: LTL Properties
+---------------------------------------------------------------------------
+
+
+--2: (a)
+LTLSPEC G !(empty & full)
+  
+
+--3: (b)
+LTLSPEC G (write -> F !empty)
+  
+
+--4: (c)
+LTLSPEC G (wr_data = 0ud1_1 & write & !full -> (G(read) -> F rd_data = 0ud1_1))
+  
+
+--5: (d)
+LTLSPEC G (wr_data = data1 & write & !full -> (G(read) -> F (rd_data = data1)))
+  
+
+--6: (e)
+LTLSPEC G ( !full & wr_data = data1 & write -> X(G(read) -> !empty U read))
+  
+
+--7: (f) 
+--LTLSPEC
+LTLSPEC G ((write & (wr_data = data1)) & (X (write & (wr_data = data2))) -> (X (rd_data = data1) & X (rd_data == data2)))
+  
+  
+   
+-- ---------------------------------------------------------------------------
+-- -- Section 3.2, Q2: CTL Properties
+-- ---------------------------------------------------------------------------
+
+-- 0: (a)
+CTLSPEC EF EG full
+  
+
+--1: (b)
+CTLSPEC AG (full -> EF (empty))
+  
+
+-- -- ---------------------------------------------------------------------------
+-- -- Section 3.3, Q1: LTL Property showing bug
+-- ---------------------------------------------------------------------------
+
+-- --8:
+-- LTLSPEC
+--   FALSE;
+
+---------------------------------------------------------------------------
+-- Section 3.3, Q2: Description of counter example behaviour
+---------------------------------------------------------------------------
+-- <ADD DESCRIPTION HERE>
